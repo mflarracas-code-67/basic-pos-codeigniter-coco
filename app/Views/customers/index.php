@@ -1,63 +1,132 @@
-<?= view('templates/header', ['title' => 'Customer Accounts']) ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container">
+<head>
 
-    <h1 class="page-title">Customer Accounts</h1>
+    <meta charset="UTF-8">
 
-    <p style="margin-bottom: 20px;">
-        List of registered customers.
-    </p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="table-container">
+    <title>Customer Accounts</title>
 
-        <table>
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-            </thead>
+</head>
 
-            <tbody>
+<body>
 
-                <?php $number = 1; ?>
+    <!-- Navigation -->
 
-                <?php foreach ($customers as $customer): ?>
+    <nav>
+
+        <div class="logo">
+            POS SYSTEM
+        </div>
+
+        <div class="nav-links">
+
+            <a href="<?= base_url('/') ?>">
+                Home
+            </a>
+
+            <a href="<?= base_url('about') ?>">
+                About
+            </a>
+
+            <a href="<?= base_url('customers') ?>">
+                Customers
+            </a>
+
+            <a href="<?= base_url('users') ?>">
+                Users
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+        <h1 class="page-title">
+            Customer Accounts
+        </h1>
+
+        <p class="page-description">
+            List of registered customers.
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
 
                     <tr>
 
-                        <td><?= $number++ ?></td>
+                        <th>#</th>
 
-                        <td>
-                            <?= esc($customer['full_name']) ?>
-                        </td>
+                        <th>Full Name</th>
 
-                        <td>
-                            <?= esc($customer['email']) ?>
-                        </td>
+                        <th>Email</th>
 
-                        <td>
-                            <?= esc($customer['phone']) ?>
-                        </td>
+                        <th>Phone</th>
 
                     </tr>
 
-                <?php endforeach; ?>
+                </thead>
 
-            </tbody>
 
-        </table>
+                <tbody>
+
+                    <?php $number = 1; ?>
+
+                    <?php foreach ($customers as $customer): ?>
+
+                        <tr>
+
+                            <td>
+                                <?= $number++ ?>
+                            </td>
+
+                            <td>
+                                <?= esc($customer['full_name']) ?>
+                            </td>
+
+                            <td>
+                                <?= esc($customer['email']) ?>
+                            </td>
+
+                            <td>
+                                <?= esc($customer['phone']) ?>
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-</div>
 
-<footer>
-    <p>&copy; 2026 POS System</p>
-</footer>
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 POS System
+        </p>
+
+    </footer>
 
 </body>
+
 </html>

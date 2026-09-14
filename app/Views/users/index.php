@@ -1,63 +1,130 @@
-<?= view('templates/header', ['title' => 'User Accounts']) ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Accounts</title>
 
-    <h1 class="page-title">User Accounts</h1>
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+</head>
 
-    <p style="margin-bottom: 20px;">
-        List of system users and staff members.
-    </p>
+<body>
 
-    <div class="table-container">
+    <nav>
 
-        <table>
+        <div class="logo">
+            POS SYSTEM
+        </div>
 
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Full Name</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
+        <div class="nav-links">
 
-            <tbody>
+            <a href="<?= base_url('/') ?>">
+                Home
+            </a>
 
-                <?php $number = 1; ?>
+            <a href="<?= base_url('about') ?>">
+                About
+            </a>
 
-                <?php foreach ($users as $user): ?>
+            <a href="<?= base_url('customers') ?>">
+                Customers
+            </a>
+
+            <a href="<?= base_url('users') ?>">
+                Users
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1 class="page-title">
+            User Accounts
+        </h1>
+
+        <p class="page-description">
+            List of system users and staff members.
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
 
                     <tr>
 
-                        <td><?= $number++ ?></td>
+                        <th>
+                            #
+                        </th>
 
-                        <td>
-                            <?= esc($user['username']) ?>
-                        </td>
+                        <th>
+                            Username
+                        </th>
 
-                        <td>
-                            <?= esc($user['full_name']) ?>
-                        </td>
+                        <th>
+                            Full Name
+                        </th>
 
-                        <td>
-                            <?= esc($user['role']) ?>
-                        </td>
+                        <th>
+                            Created At
+                        </th>
 
                     </tr>
 
-                <?php endforeach; ?>
+                </thead>
 
-            </tbody>
 
-        </table>
+                <tbody>
+
+                    <?php $number = 1; ?>
+
+                    <?php foreach ($users as $user): ?>
+
+                        <tr>
+
+                            <td>
+                                <?= $number++ ?>
+                            </td>
+
+                            <td>
+                                <?= esc($user['username']) ?>
+                            </td>
+
+                            <td>
+                                <?= esc($user['full_name']) ?>
+                            </td>
+
+                            <td>
+                                <?= esc($user['created_at']) ?>
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-</div>
 
-<footer>
-    <p>&copy; 2026 POS System</p>
-</footer>
+    <footer>
+
+        <p>
+            &copy; 2026 POS System
+        </p>
+
+    </footer>
 
 </body>
+
 </html>

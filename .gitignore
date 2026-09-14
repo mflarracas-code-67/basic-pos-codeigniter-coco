@@ -1,2 +1,7 @@
 .env
 /vendor/
+
+/writable/*
+!/writable/.gitkeep
+
+/browser

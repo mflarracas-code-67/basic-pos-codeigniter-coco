@@ -1,8 +1,0 @@
--- POS System Database Export
--- Version1
---
--- Project does not use a database for now.
--- Customer and User Accounts are using static PHP arrays
--- they are temporary data sources.
---
--- A MySQL database will be executed next time.
