@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About</title>
+    <title>Profile</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>
@@ -44,42 +44,41 @@
     <div class="container">
 
         <h1 class="page-title">
-            About the System
+            User Profile
         </h1>
 
         <div class="card">
 
             <h3>
-                Tasks for Today Management System
+                Demo User Information
             </h3>
 
             <br>
 
             <p>
-                This system is designed to help users manage and
-                organize their daily tasks.
+                <strong>Username:</strong>
+                <?= esc($user['username']) ?>
             </p>
 
             <br>
 
             <p>
-                The system displays tasks scheduled for today,
-                provides a complete task list, and allows users
-                to view profile information.
+                <strong>Full Name:</strong>
+                <?= esc($user['full_name']) ?>
             </p>
 
             <br>
 
             <p>
-                <strong>Developer:</strong>
-                Mico F. Larracas
+                <strong>Email:</strong>
+                <?= esc($user['email']) ?>
             </p>
 
             <br>
 
             <p>
-                <strong>Technology:</strong>
-                PHP, CodeIgniter 4, MySQL
+                <strong>Created At:</strong>
+                <?= esc($user['created_at']) ?>
             </p>
 
         </div>

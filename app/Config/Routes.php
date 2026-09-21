@@ -10,3 +10,5 @@ $routes->get('/', 'Pages::index');
 $routes->get('/about', 'Pages::about');
 $routes->get('/customers', 'Customers::index');
 $routes->get('/users', 'Users::index');
+$routes->get('/tasks', 'Tasks::index');
+$routes->get('/profile', 'Profile::index');

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tasks for Today</title>
+    <title>Task List</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>
@@ -44,11 +44,11 @@
     <div class="container">
 
         <h1 class="page-title">
-            Tasks for Today
+            Full Task List
         </h1>
 
         <p class="page-description">
-            Here are your tasks scheduled for today.
+            List of all tasks in the system.
         </p>
 
 
@@ -60,21 +60,11 @@
 
                     <tr>
 
-                        <th>
-                            #
-                        </th>
-
-                        <th>
-                            Task
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Date
-                        </th>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Task Date</th>
+                        <th>Created At</th>
 
                     </tr>
 
@@ -103,6 +93,10 @@
 
                             <td>
                                 <?= esc($task['task_date']) ?>
+                            </td>
+
+                            <td>
+                                <?= esc($task['created_at']) ?>
                             </td>
 
                         </tr>
