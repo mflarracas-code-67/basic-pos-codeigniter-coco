@@ -10,6 +10,34 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 
+    <style>
+
+        .user-form {
+            margin-bottom: 30px;
+        }
+
+        .user-form input {
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-form button {
+            padding: 10px 18px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .user-actions a {
+            display: inline-block;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -54,9 +82,40 @@
         </h1>
 
         <p class="page-description">
-            List of system users and staff members.
+            Add and manage system users and staff members.
         </p>
 
+
+        <!-- Add User Form -->
+
+        <form
+            action="<?= base_url('users/add') ?>"
+            method="post"
+            class="user-form"
+        >
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="text"
+                name="full_name"
+                placeholder="Full Name"
+                required
+            >
+
+            <button type="submit">
+                Add User
+            </button>
+
+        </form>
+
+
+        <!-- User List -->
 
         <div class="table-container">
 
@@ -66,21 +125,15 @@
 
                     <tr>
 
-                        <th>
-                            #
-                        </th>
+                        <th>#</th>
 
-                        <th>
-                            Username
-                        </th>
+                        <th>Username</th>
 
-                        <th>
-                            Full Name
-                        </th>
+                        <th>Full Name</th>
 
-                        <th>
-                            Created At
-                        </th>
+                        <th>Created At</th>
+
+                        <th>Actions</th>
 
                     </tr>
 
@@ -89,31 +142,66 @@
 
                 <tbody>
 
-                    <?php $number = 1; ?>
+                    <?php if (!empty($users)): ?>
 
-                    <?php foreach ($users as $user): ?>
+                        <?php $number = 1; ?>
+
+                        <?php foreach ($users as $user): ?>
+
+                            <tr>
+
+                                <td>
+                                    <?= $number++ ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($user['username']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($user['full_name']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($user['created_at']) ?>
+                                </td>
+
+                                <td>
+
+                                    <div class="user-actions">
+
+                                        <a
+                                            href="<?= base_url('users/edit/' . $user['id']) ?>"
+                                        >
+                                            Edit
+                                        </a>
+
+                                        <a
+                                            href="<?= base_url('users/delete/' . $user['id']) ?>"
+                                            onclick="return confirm('Are you sure you want to delete this user?');"
+                                        >
+                                            Delete
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
 
                         <tr>
 
-                            <td>
-                                <?= $number++ ?>
-                            </td>
-
-                            <td>
-                                <?= esc($user['username']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($user['full_name']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($user['created_at']) ?>
+                            <td colspan="5" style="text-align: center;">
+                                No users found.
                             </td>
 
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
                 </tbody>
 
