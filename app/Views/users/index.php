@@ -12,20 +12,6 @@
 
     <style>
 
-        .user-form {
-            margin-bottom: 30px;
-        }
-
-        .user-form input {
-            padding: 10px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-
-        .user-form button {
-            padding: 10px 18px;
-        }
-
         .user-actions {
             display: flex;
             gap: 15px;
@@ -34,6 +20,22 @@
 
         .user-actions a {
             display: inline-block;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+
+            object-fit: cover;
+
+            border: 2px solid #ffd400;
+
+            border-radius: 50%;
+        }
+
+        .add-user-container {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
     </style>
@@ -45,7 +47,7 @@
     <nav>
 
         <div class="logo">
-            TASKS FOR TODAY
+            POS SYSTEM
         </div>
 
         <div class="nav-links">
@@ -82,37 +84,22 @@
         </h1>
 
         <p class="page-description">
-            Add and manage system users and staff members.
+            List of system users and staff members.
         </p>
 
 
-        <!-- Add User Form -->
+        <!-- Add New User Button -->
 
-        <form
-            action="<?= base_url('users/add') ?>"
-            method="post"
-            class="user-form"
-        >
+        <div class="add-user-container">
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
+            <a
+                href="<?= base_url('users/new') ?>"
+                class="button"
             >
+                Add New User
+            </a>
 
-            <input
-                type="text"
-                name="full_name"
-                placeholder="Full Name"
-                required
-            >
-
-            <button type="submit">
-                Add User
-            </button>
-
-        </form>
+        </div>
 
 
         <!-- User List -->
@@ -125,15 +112,33 @@
 
                     <tr>
 
-                        <th>#</th>
+                        <th>
+                            #
+                        </th>
 
-                        <th>Username</th>
+                        <th>
+                            Avatar
+                        </th>
 
-                        <th>Full Name</th>
+                        <th>
+                            Username
+                        </th>
 
-                        <th>Created At</th>
+                        <th>
+                            Full Name
+                        </th>
 
-                        <th>Actions</th>
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Created At
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
 
                     </tr>
 
@@ -142,66 +147,97 @@
 
                 <tbody>
 
-                    <?php if (!empty($users)): ?>
+                    <?php $number = 1; ?>
 
-                        <?php $number = 1; ?>
-
-                        <?php foreach ($users as $user): ?>
-
-                            <tr>
-
-                                <td>
-                                    <?= $number++ ?>
-                                </td>
-
-                                <td>
-                                    <?= esc($user['username']) ?>
-                                </td>
-
-                                <td>
-                                    <?= esc($user['full_name']) ?>
-                                </td>
-
-                                <td>
-                                    <?= esc($user['created_at']) ?>
-                                </td>
-
-                                <td>
-
-                                    <div class="user-actions">
-
-                                        <a
-                                            href="<?= base_url('users/edit/' . $user['id']) ?>"
-                                        >
-                                            Edit
-                                        </a>
-
-                                        <a
-                                            href="<?= base_url('users/delete/' . $user['id']) ?>"
-                                            onclick="return confirm('Are you sure you want to delete this user?');"
-                                        >
-                                            Delete
-                                        </a>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        <?php endforeach; ?>
-
-                    <?php else: ?>
+                    <?php foreach ($users as $user): ?>
 
                         <tr>
 
-                            <td colspan="5" style="text-align: center;">
-                                No users found.
+                            <td>
+                                <?= $number++ ?>
+                            </td>
+
+
+                            <!-- Avatar -->
+
+                            <td>
+
+                                <?php if (!empty($user['avatar'])): ?>
+
+                                    <img
+                                        src="<?= base_url('uploads/avatars/' . esc($user['avatar'])) ?>"
+                                        alt="User Avatar"
+                                        class="avatar"
+                                    >
+
+                                <?php else: ?>
+
+                                    <img
+                                        src="<?= base_url('assets/images/default-avatar.png') ?>"
+                                        alt="Default Avatar"
+                                        class="avatar"
+                                    >
+
+                                <?php endif; ?>
+
+                            </td>
+
+
+                            <!-- Username -->
+
+                            <td>
+                                <?= esc($user['username']) ?>
+                            </td>
+
+
+                            <!-- Full Name -->
+
+                            <td>
+                                <?= esc($user['full_name']) ?>
+                            </td>
+
+
+                            <!-- Email -->
+
+                            <td>
+                                <?= esc($user['email']) ?>
+                            </td>
+
+
+                            <!-- Created At -->
+
+                            <td>
+                                <?= esc($user['created_at']) ?>
+                            </td>
+
+
+                            <!-- Actions -->
+
+                            <td>
+
+                                <div class="user-actions">
+
+                                    <a
+                                        href="<?= base_url('users/edit/' . $user['id']) ?>"
+                                    >
+                                        Edit
+                                    </a>
+
+
+                                    <a
+                                        href="<?= base_url('users/delete/' . $user['id']) ?>"
+                                        onclick="return confirm('Are you sure you want to delete this user?');"
+                                    >
+                                        Delete
+                                    </a>
+
+                                </div>
+
                             </td>
 
                         </tr>
 
-                    <?php endif; ?>
+                    <?php endforeach; ?>
 
                 </tbody>
 
@@ -215,7 +251,7 @@
     <footer>
 
         <p>
-            &copy; 2026 Tasks for Today Management System
+            &copy; 2026 POS System
         </p>
 
     </footer>

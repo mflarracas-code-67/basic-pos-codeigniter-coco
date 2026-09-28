@@ -21,6 +21,7 @@ $routes->get('/customers/delete/(:num)', 'Customers::delete/$1');
 
 // Users
 $routes->get('/users', 'Users::index');
+$routes->get('/users/new', 'Users::new');
 $routes->post('/users/add', 'Users::add');
 $routes->get('/users/edit/(:num)', 'Users::edit/$1');
 $routes->post('/users/update/(:num)', 'Users::update/$1');

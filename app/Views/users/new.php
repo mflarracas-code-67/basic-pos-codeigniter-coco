@@ -6,24 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit User</title>
+    <title>New User</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 
     <style>
 
-        .edit-form {
+        .user-form {
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .edit-form label {
+        .user-form label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
         }
 
-        .edit-form input {
+        .user-form input {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
@@ -34,11 +34,12 @@
             border: 2px solid #ffd400;
         }
 
-        .edit-form input[type="file"] {
-            padding: 10px;
+        .user-form input:focus {
+            outline: none;
+            border-color: #ffffff;
         }
 
-        .edit-form button {
+        .user-form button {
             padding: 12px 20px;
 
             background-color: #000000;
@@ -50,31 +51,9 @@
             cursor: pointer;
         }
 
-        .edit-form button:hover {
+        .user-form button:hover {
             background-color: #ffd400;
             color: #000000;
-        }
-
-        .avatar-preview {
-            margin-bottom: 20px;
-        }
-
-        .avatar-preview img {
-            width: 100px;
-            height: 100px;
-
-            object-fit: cover;
-
-            border: 2px solid #ffd400;
-
-            border-radius: 50%;
-        }
-
-        .avatar-note {
-            margin-top: -10px;
-            margin-bottom: 20px;
-
-            font-size: 14px;
         }
 
         .back-button {
@@ -98,6 +77,20 @@
             color: #000000;
         }
 
+        .error-box {
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+
+            border: 2px solid #ff4444;
+            padding: 15px;
+
+            color: #ffffff;
+        }
+
+        .error-box p {
+            margin-bottom: 5px;
+        }
+
     </style>
 
 </head>
@@ -107,7 +100,7 @@
     <nav>
 
         <div class="logo">
-            POS SYSTEM
+            TASKS FOR TODAY
         </div>
 
         <div class="nav-links">
@@ -140,19 +133,35 @@
     <div class="container">
 
         <h1 class="page-title">
-            Edit User
+            Add New User
         </h1>
 
         <p class="page-description">
-            Update the user's account information.
+            Create a new system user or staff account.
         </p>
 
 
+        <?php if (session()->getFlashdata('errors')): ?>
+
+            <div class="error-box">
+
+                <?php foreach (session()->getFlashdata('errors') as $error): ?>
+
+                    <p>
+                        <?= esc($error) ?>
+                    </p>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        <?php endif; ?>
+
+
         <form
-            action="<?= base_url('users/update/' . $user['id']) ?>"
+            action="<?= base_url('users/add') ?>"
             method="post"
-            enctype="multipart/form-data"
-            class="edit-form"
+            class="user-form"
         >
 
             <label for="username">
@@ -163,7 +172,8 @@
                 type="text"
                 id="username"
                 name="username"
-                value="<?= esc($user['username']) ?>"
+                value="<?= old('username') ?>"
+                placeholder="Enter username"
                 required
             >
 
@@ -176,55 +186,29 @@
                 type="text"
                 id="full_name"
                 name="full_name"
-                value="<?= esc($user['full_name']) ?>"
+                value="<?= old('full_name') ?>"
+                placeholder="Enter full name"
                 required
             >
 
 
-            <label for="avatar">
-                Profile Picture
-            </label>
-
-
-            <?php if (!empty($user['avatar'])): ?>
-
-                <div class="avatar-preview">
-
-                    <img
-                        src="<?= base_url('uploads/avatars/' . esc($user['avatar'])) ?>"
-                        alt="Current Profile Picture"
-                    >
-
-                </div>
-
-            <?php endif; ?>
-
-
-            <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
-            >
-
-            <p class="avatar-note">
-                JPG or PNG only. Maximum file size: 2 MB.
-            </p>
-
-
             <button type="submit">
-                Update User
+                Create User
             </button>
 
         </form>
 
 
-        <a
-            href="<?= base_url('users') ?>"
-            class="back-button"
-        >
-            Back to Users
-        </a>
+        <div style="text-align: center;">
+
+            <a
+                href="<?= base_url('users') ?>"
+                class="back-button"
+            >
+                Back to Users
+            </a>
+
+        </div>
 
     </div>
 
@@ -232,7 +216,7 @@
     <footer>
 
         <p>
-            &copy; 2026 POS System
+            &copy; 2026 Tasks for Today Management System
         </p>
 
     </footer>
