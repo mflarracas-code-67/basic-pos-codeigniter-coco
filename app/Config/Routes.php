@@ -14,6 +14,10 @@ $routes->get('/about', 'Pages::about');
 
 // Customers
 $routes->get('/customers', 'Customers::index');
+$routes->post('/customers/add', 'Customers::add');
+$routes->get('/customers/edit/(:num)', 'Customers::edit/$1');
+$routes->post('/customers/update/(:num)', 'Customers::update/$1');
+$routes->get('/customers/delete/(:num)', 'Customers::delete/$1');
 
 // Users
 $routes->get('/users', 'Users::index');
