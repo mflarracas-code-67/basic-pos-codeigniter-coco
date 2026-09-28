@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Task List</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+
 </head>
 
 <body>
@@ -15,25 +17,29 @@
     <nav>
 
         <div class="logo">
-            TASKS FOR TODAY
+            POS SYSTEM
         </div>
 
         <div class="nav-links">
 
             <a href="<?= base_url('/') ?>">
-                Today
-            </a>
-
-            <a href="<?= base_url('tasks') ?>">
-                Task List
-            </a>
-
-            <a href="<?= base_url('profile') ?>">
-                Profile
+                Home
             </a>
 
             <a href="<?= base_url('about') ?>">
                 About
+            </a>
+
+            <a href="<?= base_url('customers') ?>">
+                Customers
+            </a>
+
+            <a href="<?= base_url('users') ?>">
+                Users
+            </a>
+
+            <a href="<?= base_url('tasks') ?>">
+                Tasks
             </a>
 
         </div>
@@ -44,13 +50,33 @@
     <div class="container">
 
         <h1 class="page-title">
-            Full Task List
+            Task Management
         </h1>
 
         <p class="page-description">
-            List of all tasks in the system.
+            Add, view, and manage tasks in the system.
         </p>
 
+
+        <!-- Add Task Form -->
+
+        <form action="<?= base_url('tasks/add') ?>" method="post" class="task-form">
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter a task"
+                required
+            >
+
+            <button type="submit">
+                Add Task
+            </button>
+
+        </form>
+
+
+        <!-- Task List -->
 
         <div class="table-container">
 
@@ -61,10 +87,16 @@
                     <tr>
 
                         <th>#</th>
+
                         <th>Task</th>
+
                         <th>Status</th>
+
                         <th>Task Date</th>
+
                         <th>Created At</th>
+
+                        <th>Actions</th>
 
                     </tr>
 
@@ -99,6 +131,19 @@
                                 <?= esc($task['created_at']) ?>
                             </td>
 
+                            <td>
+
+                                <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">
+                                    Edit
+                                </a>
+
+                                <a href="<?= base_url('tasks/delete/' . $task['id']) ?>"
+                                   onclick="return confirm('Are you sure you want to delete this task?');">
+                                    Delete
+                                </a>
+
+                            </td>
+
                         </tr>
 
                     <?php endforeach; ?>
@@ -115,7 +160,7 @@
     <footer>
 
         <p>
-            &copy; 2026 Tasks for Today Management System
+            &copy; 2026 POS System
         </p>
 
     </footer>
