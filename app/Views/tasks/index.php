@@ -44,7 +44,7 @@
     <nav>
 
         <div class="logo">
-            POS SYSTEM
+            TASKS FOR TODAY
         </div>
 
         <div class="nav-links">
@@ -87,7 +87,11 @@
 
         <!-- Add Task Form -->
 
-        <form action="<?= base_url('tasks/add') ?>" method="post" class="task-form">
+        <form
+            action="<?= base_url('tasks/add') ?>"
+            method="post"
+            class="task-form"
+        >
 
             <input
                 type="text"
@@ -132,54 +136,70 @@
 
                 <tbody>
 
-                    <?php $number = 1; ?>
+                    <?php if (!empty($tasks)): ?>
 
-                    <?php foreach ($tasks as $task): ?>
+                        <?php $number = 1; ?>
+
+                        <?php foreach ($tasks as $task): ?>
+
+                            <tr>
+
+                                <td>
+                                    <?= $number++ ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['title']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['status']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['task_date']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['created_at']) ?>
+                                </td>
+
+                                <td>
+
+                                    <div class="task-actions">
+
+                                        <a
+                                            href="<?= base_url('tasks/edit/' . $task['id']) ?>"
+                                        >
+                                            Edit
+                                        </a>
+
+                                        <a
+                                            href="<?= base_url('tasks/delete/' . $task['id']) ?>"
+                                            onclick="return confirm('Are you sure you want to delete this task?');"
+                                        >
+                                            Delete
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
 
                         <tr>
 
-                            <td>
-                                <?= $number++ ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['title']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['status']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['task_date']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['created_at']) ?>
-                            </td>
-
-                            <td>
-
-                                <div class="task-actions">
-
-                                    <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">
-                                        Edit
-                                    </a>
-
-                                    <a
-                                        href="<?= base_url('tasks/delete/' . $task['id']) ?>"
-                                        onclick="return confirm('Are you sure you want to delete this task?');"
-                                    >
-                                        Delete
-                                    </a>
-
-                                </div>
-
+                            <td colspan="6" style="text-align: center;">
+                                No tasks found.
                             </td>
 
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
                 </tbody>
 
@@ -193,7 +213,7 @@
     <footer>
 
         <p>
-            &copy; 2026 POS System
+            &copy; 2026 Tasks for Today Management System
         </p>
 
     </footer>

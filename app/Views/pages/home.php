@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tasks for Today</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+
 </head>
 
 <body>
@@ -21,19 +23,23 @@
         <div class="nav-links">
 
             <a href="<?= base_url('/') ?>">
-                Today
-            </a>
-
-            <a href="<?= base_url('tasks') ?>">
-                Task List
-            </a>
-
-            <a href="<?= base_url('profile') ?>">
-                Profile
+                Home
             </a>
 
             <a href="<?= base_url('about') ?>">
                 About
+            </a>
+
+            <a href="<?= base_url('customers') ?>">
+                Customers
+            </a>
+
+            <a href="<?= base_url('users') ?>">
+                Users
+            </a>
+
+            <a href="<?= base_url('tasks') ?>">
+                Tasks
             </a>
 
         </div>
@@ -43,13 +49,17 @@
 
     <div class="container">
 
-        <h1 class="page-title">
-            Tasks for Today
-        </h1>
+        <div class="hero">
 
-        <p class="page-description">
-            Here are your tasks scheduled for today.
-        </p>
+            <h1>
+                Tasks for Today
+            </h1>
+
+            <p>
+                Here are your tasks scheduled for today.
+            </p>
+
+        </div>
 
 
         <div class="table-container">
@@ -83,35 +93,69 @@
 
                 <tbody>
 
-                    <?php $number = 1; ?>
+                    <?php if (!empty($tasks)): ?>
 
-                    <?php foreach ($tasks as $task): ?>
+                        <?php $number = 1; ?>
+
+                        <?php foreach ($tasks as $task): ?>
+
+                            <tr>
+
+                                <td>
+                                    <?= $number++ ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['title']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['status']) ?>
+                                </td>
+
+                                <td>
+                                    <?= esc($task['task_date']) ?>
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
 
                         <tr>
 
-                            <td>
-                                <?= $number++ ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['title']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['status']) ?>
-                            </td>
-
-                            <td>
-                                <?= esc($task['task_date']) ?>
+                            <td colspan="4" style="text-align: center;">
+                                No tasks scheduled for today.
                             </td>
 
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
                 </tbody>
 
             </table>
+
+        </div>
+
+
+        <div style="text-align: center; margin-top: 30px;">
+
+            <a
+                href="<?= base_url('customers') ?>"
+                class="button"
+            >
+                View Customers
+            </a>
+
+            <a
+                href="<?= base_url('tasks') ?>"
+                class="button"
+                style="margin-left: 15px;"
+            >
+                Manage Tasks
+            </a>
 
         </div>
 

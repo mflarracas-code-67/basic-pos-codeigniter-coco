@@ -6,7 +6,7 @@ use App\Models\TaskModel;
 
 class Pages extends BaseController
 {
-    public function index()
+    public function home()
     {
         $taskModel = new TaskModel();
 

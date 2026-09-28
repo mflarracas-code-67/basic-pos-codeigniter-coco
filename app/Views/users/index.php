@@ -2,11 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>User Accounts</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+
 </head>
 
 <body>
@@ -14,7 +17,7 @@
     <nav>
 
         <div class="logo">
-            POS SYSTEM
+            TASKS FOR TODAY
         </div>
 
         <div class="nav-links">
@@ -33,6 +36,10 @@
 
             <a href="<?= base_url('users') ?>">
                 Users
+            </a>
+
+            <a href="<?= base_url('tasks') ?>">
+                Tasks
             </a>
 
         </div>
@@ -120,7 +127,7 @@
     <footer>
 
         <p>
-            &copy; 2026 POS System
+            &copy; 2026 Tasks for Today Management System
         </p>
 
     </footer>

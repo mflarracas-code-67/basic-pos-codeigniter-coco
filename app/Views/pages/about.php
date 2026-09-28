@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>About</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+
 </head>
 
 <body>
@@ -21,19 +23,23 @@
         <div class="nav-links">
 
             <a href="<?= base_url('/') ?>">
-                Today
-            </a>
-
-            <a href="<?= base_url('tasks') ?>">
-                Task List
-            </a>
-
-            <a href="<?= base_url('profile') ?>">
-                Profile
+                Home
             </a>
 
             <a href="<?= base_url('about') ?>">
                 About
+            </a>
+
+            <a href="<?= base_url('customers') ?>">
+                Customers
+            </a>
+
+            <a href="<?= base_url('users') ?>">
+                Users
+            </a>
+
+            <a href="<?= base_url('tasks') ?>">
+                Tasks
             </a>
 
         </div>
@@ -65,7 +71,7 @@
             <p>
                 The system displays tasks scheduled for today,
                 provides a complete task list, and allows users
-                to view profile information.
+                to manage their tasks and view system information.
             </p>
 
             <br>
