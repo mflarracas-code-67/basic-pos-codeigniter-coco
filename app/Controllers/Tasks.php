@@ -38,4 +38,55 @@ class Tasks extends BaseController
 
         return redirect()->to('/tasks');
     }
+
+
+    public function edit($id)
+    {
+        $taskModel = new TaskModel();
+
+        $task = $taskModel->find($id);
+
+        if (!$task) {
+            return redirect()->to('/tasks');
+        }
+
+        $data = [
+            'task' => $task
+        ];
+
+        return view('tasks/edit', $data);
+    }
+
+
+    public function update($id)
+    {
+        $taskModel = new TaskModel();
+
+        $title = $this->request->getPost('title');
+        $status = $this->request->getPost('status');
+
+        if (!empty($title) && !empty($status)) {
+
+            $taskModel->update($id, [
+                'title'  => $title,
+                'status' => $status
+            ]);
+        }
+
+        return redirect()->to('/tasks');
+    }
+
+
+    public function delete($id)
+    {
+        $taskModel = new TaskModel();
+
+        $task = $taskModel->find($id);
+
+        if ($task) {
+            $taskModel->delete($id);
+        }
+
+        return redirect()->to('/tasks');
+    }
 }

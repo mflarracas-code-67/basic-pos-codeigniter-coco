@@ -10,6 +10,33 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 
+    <style>
+
+        .task-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .task-actions a {
+            display: inline-block;
+        }
+
+        .task-form {
+            margin-bottom: 30px;
+        }
+
+        .task-form input {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .task-form button {
+            padding: 10px 18px;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -133,14 +160,20 @@
 
                             <td>
 
-                                <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">
-                                    Edit
-                                </a>
+                                <div class="task-actions">
 
-                                <a href="<?= base_url('tasks/delete/' . $task['id']) ?>"
-                                   onclick="return confirm('Are you sure you want to delete this task?');">
-                                    Delete
-                                </a>
+                                    <a href="<?= base_url('tasks/edit/' . $task['id']) ?>">
+                                        Edit
+                                    </a>
+
+                                    <a
+                                        href="<?= base_url('tasks/delete/' . $task['id']) ?>"
+                                        onclick="return confirm('Are you sure you want to delete this task?');"
+                                    >
+                                        Delete
+                                    </a>
+
+                                </div>
 
                             </td>
 
