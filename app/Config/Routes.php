@@ -9,23 +9,38 @@ use CodeIgniter\Router\RouteCollection;
 // Home
 $routes->get('/', 'Pages::home');
 
+// Authentication
+$routes->get('/login', 'Auth::login');
+$routes->post('/login', 'Auth::attemptLogin');
+$routes->get('/logout', 'Auth::logout');
+
 // About
 $routes->get('/about', 'Pages::about');
 
-// Customers
-$routes->get('/customers', 'Customers::index');
-$routes->post('/customers/add', 'Customers::add');
-$routes->get('/customers/edit/(:num)', 'Customers::edit/$1');
-$routes->post('/customers/update/(:num)', 'Customers::update/$1');
-$routes->get('/customers/delete/(:num)', 'Customers::delete/$1');
+// Customers - Protected
+$routes->group('customers', ['filter' => 'auth'], function ($routes) {
 
-// Users
-$routes->get('/users', 'Users::index');
-$routes->get('/users/new', 'Users::new');
-$routes->post('/users/add', 'Users::add');
-$routes->get('/users/edit/(:num)', 'Users::edit/$1');
-$routes->post('/users/update/(:num)', 'Users::update/$1');
-$routes->get('/users/delete/(:num)', 'Users::delete/$1');
+    $routes->get('/', 'Customers::index');
+    $routes->post('add', 'Customers::add');
+
+    $routes->get('edit/(:num)', 'Customers::edit/$1');
+    $routes->post('update/(:num)', 'Customers::update/$1');
+
+    $routes->get('delete/(:num)', 'Customers::delete/$1');
+});
+
+// Users - Protected
+$routes->group('users', ['filter' => 'auth'], function ($routes) {
+
+    $routes->get('/', 'Users::index');
+    $routes->get('new', 'Users::new');
+    $routes->post('add', 'Users::add');
+
+    $routes->get('edit/(:num)', 'Users::edit/$1');
+    $routes->post('update/(:num)', 'Users::update/$1');
+
+    $routes->get('delete/(:num)', 'Users::delete/$1');
+});
 
 // Tasks
 $routes->get('/tasks', 'Tasks::index');
